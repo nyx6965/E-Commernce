@@ -75,7 +75,7 @@ btn.addEventListener("click", () => {
   const oneItem = document.createElement("div");
   oneItem.classList.add("oneItem");
   items.appendChild(oneItem);
-  oneItem.innerHTML += `<div class ="oneItem"><div class="item-image">
+  items.innerHTML += `<div class ="oneItem"><div class="item-image">
  <img src="${displayImage.src}" alt="" />
 </div>
 <div class="items-infos">
@@ -84,18 +84,18 @@ btn.addEventListener("click", () => {
     125.0 * number.innerHTML
   }</strong></p>
 </div>
-<button class="delete">
+<button class="delete" onclick="deleteCart()">
  <i class="fa fa-trash" aria-hidden="true"></i>
 </button></div>`;
-  const removeCart = document.querySelector(".delete");
-  removeCart.addEventListener("click", (e) => {
-    const element = e.currentTarget.parentElement;
-    // items.removeChild(element);
-    console.log(element);
-  });
+
   checkOut.style.visibility = "visible";
-  items.appendChild(oneItem);
 });
+function deleteCart() {
+  const removeCart = document.querySelector(".delete");
+  const element = removeCart.parentElement;
+  items.removeChild(element);
+  console.log(element);
+}
 
 imageItems.map((element) => {
   element.addEventListener("click", (e) => {
