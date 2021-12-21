@@ -1,5 +1,4 @@
 /*jshint esversion: 6 */
-
 const pictures = [
   "./images/image-product-1.jpg",
 
@@ -75,7 +74,7 @@ btn.addEventListener("click", () => {
   const oneItem = document.createElement("div");
   oneItem.classList.add("oneItem");
   items.appendChild(oneItem);
-  items.innerHTML += `<div class ="oneItem"><div class="item-image">
+  oneItem.innerHTML += `<div class="item-image">
  <img src="${displayImage.src}" alt="" />
 </div>
 <div class="items-infos">
@@ -86,10 +85,11 @@ btn.addEventListener("click", () => {
 </div>
 <button class="delete" onclick="deleteCart()">
  <i class="fa fa-trash" aria-hidden="true"></i>
-</button></div>`;
+</button>`;
 
   checkOut.style.visibility = "visible";
 });
+
 function deleteCart() {
   const removeCart = document.querySelector(".delete");
   const element = removeCart.parentElement;

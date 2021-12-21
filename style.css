@@ -366,8 +366,13 @@ nav ul li a:hover {
   .close {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
-    margin-top: 20px;
+    align-items: center;
+    justify-content: space-around;
+    margin: 25px 0;
+    border-bottom: 1px solid var(--Light-grayish-blue);
+  }
+  .close img {
+    margin: 15px 0;
   }
   .title-image {
     display: flex;
@@ -387,6 +392,9 @@ nav ul li a:hover {
     background: transparent;
     color: var(--Dark-grayish-blue);
     margin: 0 20px;
+  }
+  .close-btn {
+    margin: 0;
   }
   .nav-toggle img,
   .close-btn img {
@@ -408,7 +416,7 @@ nav ul li a:hover {
     z-index: 4;
   }
   .show-list li {
-    margin: 30px 0;
+    margin: 30px 20px;
   }
   .list li a {
     font-weight: 700;
