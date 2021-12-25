@@ -1,7 +1,7 @@
 # E-commerce product page
 
-![Design preview for the E-commerce product page coding challenge](./design/Desktop)
-![Design preview for the E-commerce product page coding challenge](./design/Mobile)
+![Design preview for the E-commerce product page coding challenge](./design/Desktop.png)
+![Design preview for the E-commerce product page coding challenge](./design/Mobile.png)
 
 ## Author
 
