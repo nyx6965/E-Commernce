@@ -1,10 +1,11 @@
-# Author
+# E-commerce product page
+
+![Design preview for the E-commerce product page coding challenge](./design/Desktop-Home)
+![Design preview for the E-commerce product page coding challenge](./design/Mobile-Home)
+
+## Author
 
 Amr A. Ashebo
-
-## Frontend Mentor - E-commerce product page
-
-![Design preview for the E-commerce product page coding challenge](./design/desktop-preview.jpg)
 
 ## Welcome! 👋
 
