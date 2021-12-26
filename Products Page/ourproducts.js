@@ -151,7 +151,9 @@ const getMenProducts = async () => {
 
     return products;
   } catch (error) {
-    console.log("Error");
+    alert(
+      "You have exceeded the DAILY quota for Requests on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/tg4-solutions-tg4-solutions-default/api/v1-sneakers"
+    );
   }
 };
 
@@ -281,7 +283,9 @@ const getWomenProducts = async () => {
 
     return products;
   } catch (error) {
-    console.log("Error");
+    alert(
+      "You have exceeded the DAILY quota for Requests on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/tg4-solutions-tg4-solutions-default/api/v1-sneakers"
+    );
   }
 };
 
@@ -412,7 +416,9 @@ const getChildProducts = async () => {
 
     return products;
   } catch (error) {
-    console.log("Error");
+    alert(
+      "You have exceeded the DAILY quota for Requests on your current plan, BASIC. Upgrade your plan at https://rapidapi.com/tg4-solutions-tg4-solutions-default/api/v1-sneakers"
+    );
   }
 };
 
