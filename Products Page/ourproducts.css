@@ -151,12 +151,6 @@ nav ul li a:hover {
   text-transform: capitalize;
 }
 
-.total {
-  align-self: flex-start;
-  color: var(--Dark-grayish-blue);
-  font-weight: 600;
-}
-
 .btn-2 {
   width: 90%;
   height: 50px;
@@ -246,7 +240,7 @@ nav ul li a:hover {
 .one-product h1 {
   text-transform: uppercase;
 }
-.one-product h4 {
+.one-product h3 {
   color: var(--Dark-grayish-blue);
 }
 .img-container {
@@ -390,31 +384,6 @@ nav ul li a:hover {
   font-family: "Kumbh Sans", sans-serif;
   transition: all 0.3s ease;
 }
-.men-women-kids {
-  width: 100%;
-  margin: 50px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-.men-women-kids button {
-  border-radius: 8px;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  font-weight: 700;
-  font-family: "Kumbh Sans", sans-serif;
-  color: var(--Orange);
-  background-color: var(--White);
-  text-transform: uppercase;
-  width: 150px;
-  height: 50px;
-  transition: all 0.3s ease;
-}
-.men-women-kids button:hover {
-  color: var(--White);
-  background-color: var(--Orange);
-}
 @media screen and (max-width: 900px) {
   nav {
     position: relative;
@@ -553,16 +522,9 @@ nav ul li a:hover {
   .name {
     text-align: center;
   }
-  .men-women-kids {
-    flex-wrap: wrap;
-  }
 }
 @media screen and (max-width: 425px) {
   .one-product {
     width: 70%;
-  }
-  .men-women-kids button {
-    width: 120px;
-    height: 40px;
   }
 }
