@@ -49,5 +49,4 @@ Users should be able to:
 ## Author
 
 - Amr Ashebo
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
 - Twitter - [@amr_ashebo](https://twitter.com/amr_ashebo)
