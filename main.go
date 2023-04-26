@@ -11,7 +11,37 @@ import (
 	"golang.org/x/net/html"
 )
 
-func GetLinks(body string, value string) (data []string) {
+var base_url string = "https://sflix.to/"
+
+func RemoveDuplicates(s []string) []string {
+	bucket := make(map[string]bool)
+	var result []string
+	for _, str := range s {
+		if _, ok := bucket[str]; !ok {
+			bucket[str] = true
+			result = append(result, str)
+		}
+	}
+	return result
+}
+
+func Request(url string) (data string) {
+	client := http.Client{}
+
+	request, err := http.NewRequest(http.MethodGet, url, nil)
+	if err != nil {
+		log.Fatalln(err)
+
+	}
+
+	response, err := client.Do(request)
+
+	body, err := ioutil.ReadAll(response.Body)
+
+	return string(body)
+
+}
+func GetLinks(body string) (data []string) {
 	var links []string
 	var islink bool = false
 	token := html.NewTokenizer(strings.NewReader(body))
@@ -37,27 +67,23 @@ func GetLinks(body string, value string) (data []string) {
 }
 func main() {
 
+	var val []string
 	movie := flag.String("m", "john-wick", "p")
 	flag.Parse()
-	client := http.Client{}
-	var url string = "https://sflix.to/"
 
-	request, err := http.NewRequest(http.MethodGet, url+"search/"+*movie, nil)
-	if err != nil {
-		log.Fatalln(err)
+	body := Request(base_url + "search/" + *movie)
+	data := GetLinks(body)
 
-	}
-
-	response, err := client.Do(request)
-
-	body, err := ioutil.ReadAll(response.Body)
-
-	data := GetLinks(string(body), *movie)
-
+	data = RemoveDuplicates(data)
 	for _, v := range data {
-        a:=strings.Contains(v,*movie)
-        if a {
-        }
+		if strings.Contains(v, *movie) && strings.HasPrefix(v, "/movie/") {
+			trimmed := strings.TrimLeft(v, "/movie/")
+			fmt.Println(trimmed)
+
+			val = append(val, "/watch-movie/"+trimmed)
+		}
 	}
 
+	n := Request(base_url + val[0])
+	fmt.Println(n)
 }
