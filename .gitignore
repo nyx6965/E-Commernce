@@ -1,0 +1,14 @@
+# Ignore build directories and files
+build/
+CMakeFiles/
+CMakeCache.txt
+compile_commands.json
+*.cmake
+Makefile
+*.vcxproj
+*.vcxproj.filters
+*.sln
+*.user
+*.dir/
+*.log
+
