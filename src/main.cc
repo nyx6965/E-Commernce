@@ -1,91 +1,48 @@
-#include "../build/_deps/raylib-src/src/raylib.h"
-#include "../build/_deps/raylib-src/src/rlgl.h"
-#include <ctime>
+#include "raylib.h"
 
-#if defined(PLATFORM_DESKTOP)
-#define GLSL_VERSION 330
-#else // PLATFORM_ANDROID, PLATFORM_WEB
-#define GLSL_VERSION 100
-#endif
+#define MAX_TOUCH_POINTS 3000
 
-int main() {
+int main(void) {
 
-  const int screenWidth = 800;
-  const int screenHeight = 450;
+  const int screenWidth = 400;
+  const int screenHeight = 600;
 
   InitWindow(screenWidth, screenHeight,
-             "raylib [shaders] example - hot reloading");
+             "raylib [core] example - input multitouch");
 
-  const char *fragShaderFileName = "resources/shaders/glsl%i/reload.fs";
-  time_t fragShaderFileModTime =
-      GetFileModTime(TextFormat(fragShaderFileName, GLSL_VERSION));
-
-  Shader shader = LoadShader(0, TextFormat(fragShaderFileName, GLSL_VERSION));
-
-  int resolutionLoc = GetShaderLocation(shader, "resolution");
-  int mouseLoc = GetShaderLocation(shader, "mouse");
-  int timeLoc = GetShaderLocation(shader, "time");
-
-  float resolution[2] = {(float)screenWidth, (float)screenHeight};
-  SetShaderValue(shader, resolutionLoc, resolution, SHADER_UNIFORM_VEC2);
-
-  float totalTime = 0.0f;
-  bool shaderAutoReloading = false;
+  Vector2 touchPositions[MAX_TOUCH_POINTS] = {0};
 
   SetTargetFPS(60); // Set our game to run at 60 frames-per-second
 
   while (!WindowShouldClose()) // Detect window close button or ESC key
   {
-    totalTime += GetFrameTime();
-    Vector2 mouse = GetMousePosition();
-    float mousePos[2] = {mouse.x, mouse.y};
-
-    SetShaderValue(shader, timeLoc, &totalTime, SHADER_UNIFORM_FLOAT);
-    SetShaderValue(shader, mouseLoc, mousePos, SHADER_UNIFORM_VEC2);
-
-    if (shaderAutoReloading || (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))) {
-      long currentFragShaderModTime =
-          GetFileModTime(TextFormat(fragShaderFileName, GLSL_VERSION));
-
-      if (currentFragShaderModTime != fragShaderFileModTime) {
-        Shader updatedShader =
-            LoadShader(0, TextFormat(fragShaderFileName, GLSL_VERSION));
-
-        if (updatedShader.id !=
-            rlGetShaderIdDefault()) // It was correctly loaded
-        {
-          UnloadShader(shader);
-          shader = updatedShader;
-
-          resolutionLoc = GetShaderLocation(shader, "resolution");
-          mouseLoc = GetShaderLocation(shader, "mouse");
-          timeLoc = GetShaderLocation(shader, "time");
-
-          SetShaderValue(shader, resolutionLoc, resolution,
-                         SHADER_UNIFORM_VEC2);
-        }
-
-        fragShaderFileModTime = currentFragShaderModTime;
-      }
-    }
-
-    if (IsKeyPressed(KEY_A))
-      shaderAutoReloading = !shaderAutoReloading;
 
     BeginDrawing();
 
+    /*
+    for (int i = 0; i < 2000; ++i){
+      touchPositions[i].x = (int)GetRandomValue(0, screenWidth);
+      touchPositions[i].y = (int)GetRandomValue(0, screenHeight);
+    }
+    */
+
     ClearBackground(RAYWHITE);
 
-    BeginShaderMode(shader);
-    DrawRectangle(0, 0, screenWidth, screenHeight, WHITE);
-    EndShaderMode();
+    /*
+    for (int i = 0; i < 2000; ++i) {
+      if ((touchPositions[i].x > 0) && (touchPositions[i].y > 0)) {
+        DrawCircleV(touchPositions[i], 1.5,BLACK );
+      }
+    }
+    */
+    // Get the mouse position
+    Vector2 mousePosition = GetMousePosition();
+
+    DrawCircleV(mousePosition, 1.5, BLACK);
 
     EndDrawing();
   }
 
-  UnloadShader(shader); // Unload shader
-
   CloseWindow(); // Close window and OpenGL context
-
   return 0;
 }
