@@ -1,8 +1,11 @@
 #include "raylib.h"
+#include <deque>
 
-#define MAX_TOUCH_POINTS 3000
+#define MAX_TOUCH_POINTS 10000
 
 int main(void) {
+
+  std::deque<Vector2> d;
 
   const int screenWidth = 400;
   const int screenHeight = 600;
@@ -12,41 +15,42 @@ int main(void) {
 
   Vector2 touchPositions[MAX_TOUCH_POINTS] = {0};
 
+  Vector2 test;
   SetTargetFPS(60);
 
-  for (int i = 0; i < 10; ++i) {
+  /*
+  for (int i = 0; i < MAX_TOUCH_POINTS; ++i) {
     touchPositions[i].x = (int)GetRandomValue(0, screenWidth);
     touchPositions[i].y = (int)GetRandomValue(0, screenHeight);
   }
+  */
 
-  Vector2 current_positon = GetMousePosition();
+  float smo = 0.001;
+
   while (!WindowShouldClose()) {
 
-    Vector2 new_pos;
-    new_pos.x = GetMousePosition().x - current_positon.x;
-    new_pos.y = GetMousePosition().y - current_positon.y;
-
-    for (int i = 0; i < 10; ++i) {
-      touchPositions[i].x += new_pos.x;
-      touchPositions[i].y += new_pos.y;
-    }
-
+    Vector2 mouse_pos = GetMousePosition();
+    test = mouse_pos;
+    d.push_back(mouse_pos);
     BeginDrawing();
-
     ClearBackground(RAYWHITE);
 
-    for (int i = 0; i < 10; ++i) {
-      if ((touchPositions[i].x > 0) && (touchPositions[i].y > 0)) {
-        DrawCircleV(touchPositions[i], 10, BLACK);
-        // DrawCircleV(mousePosition, 1.5, BLACK);
-      }
+    /*
+     for (int i = 0; i < MAX_TOUCH_POINTS; ++i) {
+
+       }
+
+      */
+    if ((test.x > 0) && (test.y > 0)) {
+      // DrawCircleV(mousePosition, 1.5, BLACK);
     }
+
+      DrawCircleV(test, 5, BLACK);
 
     // DrawCircle((int)position, GetScreenHeight() / 2 - 25, 50, RED);
 
     EndDrawing();
   }
-
   CloseWindow(); // Close window and OpenGL context
   return 0;
 }
