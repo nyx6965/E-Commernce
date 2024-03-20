@@ -20,12 +20,14 @@ int main(void) {
   Vector2 test;
   test.x = randValuex;
   test.y = randValuey;
+
   std::vector<Vector2> stack;
   SetTargetFPS(60);
 
   float smo = 0.00001;
 
   while (!WindowShouldClose()) {
+
     stack.push_back(GetMousePosition());
 
     for (auto s : stack) {
@@ -42,7 +44,6 @@ int main(void) {
       }
     }
 
-
     if (test.y > screenHeight) {
       test.y = screenHeight - 10;
     }
@@ -50,22 +51,20 @@ int main(void) {
     if (test.x > screenWidth) {
       test.x = screenWidth - 10;
     }
+
     if (test.x < 0) {
       test.x = 0;
     }
-
     if (test.y < 0) {
       test.y = 0;
     }
 
     BeginDrawing();
     ClearBackground(RAYWHITE);
-
     DrawCircleV(test, 5, BLACK);
-
     EndDrawing();
   }
 
-  CloseWindow(); // Close window and OpenGL context
+  CloseWindow(); 
   return 0;
 }
